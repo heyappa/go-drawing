@@ -85,9 +85,9 @@
           event.preventDefault();
         }
         isDrawing = true;
-        var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
-        startx = parseInt(touchobj.pageX) // get x position of touch point
-        starty = parseInt(touchobj.pageY)
+        //var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
+        //startx = parseInt(touchobj.pageX) // get x position of touch point
+        //starty = parseInt(touchobj.pageY)
         addPoint(startx - this.offsetLeft, starty - this.offsetTop, true);
         /* @@@
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
@@ -106,9 +106,9 @@
           event.preventDefault();
         }
         if (isDrawing) {
-          var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
-          startx = parseInt(touchobj.pageX) // get x position of touch point
-          starty = parseInt(touchobj.pageY)
+          //var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
+          //startx = parseInt(touchobj.pageX) // get x position of touch point
+          //starty = parseInt(touchobj.pageY)
           addPoint(startx - this.offsetLeft, starty - this.offsetTop);
           /* @@@
           addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
