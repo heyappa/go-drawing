@@ -81,8 +81,8 @@
       
       // for mobile phones (i.e., touch)
       canvas.ontouchstart = function (event) {
-        if (e.target == canvas) {
-          e.preventDefault();
+        if (event.target == canvas) {
+          event.preventDefault();
         }
         isDrawing = true;
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
@@ -94,8 +94,8 @@
       };
 
       canvas.ontouchmove = function (event) {
-        if (e.target == canvas) {
-          e.preventDefault();
+        if (event.target == canvas) {
+          event.preventDefault();
         }
         if (isDrawing) {
           addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
@@ -103,15 +103,15 @@
       };
 
       canvas.ontouchend = function () {
-        if (e.target == canvas) {
-          e.preventDefault();
+        if (event.target == canvas) {
+          event.preventDefault();
         }
         isDrawing = false;
       };
 
       canvas.ontouchcancel = function () {
-        if (e.target == canvas) {
-          e.preventDefault();
+        if (event.target == canvas) {
+          event.preventDefault();
         }
         isDrawing = false;
       };
