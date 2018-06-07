@@ -81,21 +81,38 @@
       
       // for mobile phones (i.e., touch)
       canvas.ontouchstart = function (event) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
         isDrawing = true;
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
       };
 
       canvas.ontouchmove = function (event) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
         if (isDrawing) {
           addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
         }
       };
 
       canvas.ontouchend = function () {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
         isDrawing = false;
       };
 
       canvas.ontouchcancel = function () {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
         isDrawing = false;
       };
 
