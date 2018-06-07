@@ -31,7 +31,8 @@
       var isDrawing = false;
       var strokeColor = '';
       var strokes = [];
-      var socket = new WebSocket("ws://localhost:3000/ws");
+      //var socket = new WebSocket("ws://localhost:3000/ws"); // @@@
+      var socket = new WebSocket("ws://34.218.231.63:3000/ws"); // @@@
       var otherColors = {};
       var otherStrokes = {};
 
@@ -77,7 +78,28 @@
             break;
         }
       }
+      
+      // for mobile phones (i.e., touch)
+      canvas.ontouchstart = function (event) {
+        isDrawing = true;
+        addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
+      };
 
+      canvas.ontouchmove = function (event) {
+        if (isDrawing) {
+          addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
+        }
+      };
+
+      canvas.ontouchend = function () {
+        isDrawing = false;
+      };
+
+      canvas.ontouchcancel = function () {
+        isDrawing = false;
+      };
+
+      // for pc (i.e., mouse)
       canvas.onmousedown = function (event) {
         isDrawing = true;
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
