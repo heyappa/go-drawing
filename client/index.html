@@ -85,6 +85,11 @@
           event.preventDefault();
         }
         isDrawing = true;
+        var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+        startx = parseInt(touchobj.pageX) // get x position of touch point
+        starty = parseInt(touchobj.pageY)
+        addPoint(startx - this.offsetLeft, starty - this.offsetTop, true);
+        /* @@@
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
         var mouseEvent = new MouseEvent("mousedown", {
             //clientX: touch.clientX,
@@ -93,6 +98,7 @@
             clientY: event.pageY-this.offsetTop
         });
         canvas.dispatchEvent(mouseEvent);
+        */
       };
 
       canvas.ontouchmove = function (event) {
@@ -100,14 +106,20 @@
           event.preventDefault();
         }
         if (isDrawing) {
-            addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
-            var mouseEvent = new MouseEvent("mousemove", {
-                //clientX: touch.clientX,
-                //clientY: touch.clientY
-                clientX: event.pageX-this.offsetLeft,
-                clientY: event.pageY-this.offsetTop
-            });
-            }
+          var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+          startx = parseInt(touchobj.pageX) // get x position of touch point
+          starty = parseInt(touchobj.pageY)
+          addPoint(startx - this.offsetLeft, starty - this.offsetTop, true);
+          /* @@@
+          addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
+          var mouseEvent = new MouseEvent("mousemove", {
+              //clientX: touch.clientX,
+              //clientY: touch.clientY
+              clientX: event.pageX-this.offsetLeft,
+              clientY: event.pageY-this.offsetTop
+          });
+          }
+          */
         };
 
       canvas.ontouchend = function () {
@@ -123,6 +135,7 @@
         }
         isDrawing = false;
       };
+
 
       // for pc (i.e., mouse)
       canvas.onmousedown = function (event) {
