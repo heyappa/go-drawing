@@ -87,8 +87,10 @@
         isDrawing = true;
         addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
         var mouseEvent = new MouseEvent("mousedown", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
+            //clientX: touch.clientX,
+            //clientY: touch.clientY
+            clientX: event.pageX-this.offsetLeft,
+            clientY: event.pageY-this.offsetTop
         });
         canvas.dispatchEvent(mouseEvent);
       };
@@ -98,9 +100,15 @@
           event.preventDefault();
         }
         if (isDrawing) {
-          addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
-        }
-      };
+            addPoint(event.pageX - this.offsetLeft, event.pageY - this.offsetTop);
+            var mouseEvent = new MouseEvent("mousemove", {
+                //clientX: touch.clientX,
+                //clientY: touch.clientY
+                clientX: event.pageX-this.offsetLeft,
+                clientY: event.pageY-this.offsetTop
+            });
+            }
+        };
 
       canvas.ontouchend = function () {
         if (event.target == canvas) {
